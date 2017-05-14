@@ -49,8 +49,8 @@
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="9EK-Mw-u8M" secondAttribute="leading" id="2c6-ms-VEi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g3Z-o8-HSK" secondAttribute="trailing" id="2ik-08-VgI"/>
-                            <constraint firstItem="g3Z-o8-HSK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="4cc-Qt-KpL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9EK-Mw-u8M" secondAttribute="bottom" constant="65" id="C6j-Ts-Pg8"/>
+                            <constraint firstItem="g3Z-o8-HSK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="250" constant="20" id="4cc-Qt-KpL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9EK-Mw-u8M" secondAttribute="bottom" priority="250" constant="65" id="C6j-Ts-Pg8"/>
                             <constraint firstItem="9EK-Mw-u8M" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="750" constant="80" id="FEr-xf-e3N"/>
                             <constraint firstItem="g3Z-o8-HSK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="RJX-Gy-n4N"/>
                             <constraint firstItem="ePI-eH-bbm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="RqW-K7-k2D"/>
@@ -78,6 +78,11 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="ofJ-l8-sHs" userLabel="Share Button">
                             <connections>
                                 <action selector="shareMeme" destination="BYZ-38-t0r" id="EtL-si-e7I"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="UrG-z7-MAt" userLabel="Share Button">
+                            <connections>
+                                <action selector="testStuff:" destination="BYZ-38-t0r" id="9VJ-ea-c5t"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

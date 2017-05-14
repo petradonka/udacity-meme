@@ -33,8 +33,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         picker.dismiss(animated: true, completion: nil)
 
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = image
-            shareButton.isEnabled = true
+            setUI(hasImage: true, image: image)
         } else {
             print("Something went wrong... There's no image...")
         }

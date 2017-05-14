@@ -30,9 +30,9 @@ class Meme {
         memedImage = meme
     }
 
-//    var memedImage: UIImage {
-//        return alternateGenerateMemedImage()
-//    }
+    var alternativeMemedImage: UIImage {
+        return alternateGenerateMemedImage()
+    }
 
     func alternateGenerateMemedImage() -> UIImage {
         let topAttributes = generateMemeFontAttributes(withText: topText, forImage: backgroundImage)

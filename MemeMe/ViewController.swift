@@ -20,12 +20,6 @@ class ViewController: UIViewController {
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
 
-    override func viewWillAppear(_ animated: Bool) {
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = false
-        subscribe()
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribe()
     }
@@ -33,6 +27,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextFields()
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        setUI(hasImage: false)
+        subscribe()
     }
 
     func setupTextFields() {
@@ -134,7 +131,7 @@ class ViewController: UIViewController {
 
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navbar
-        setUI(shouldHideTopBottomBars: true)
+        setUIForCapturingMeme(shouldHideTopBottomBars: true)
 
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -143,7 +140,7 @@ class ViewController: UIViewController {
         UIGraphicsEndImageContext()
 
         // Show toolbar and navbar
-        setUI(shouldHideTopBottomBars: false)
+        setUIForCapturingMeme(shouldHideTopBottomBars: false)
 
         return memedImage
     }
@@ -152,15 +149,71 @@ class ViewController: UIViewController {
         let _ = Meme.init(withImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
     }
 
-    func setUI(shouldHideTopBottomBars: Bool = false) {
+    func setUIForCapturingMeme(shouldHideTopBottomBars: Bool = false) {
         self.navigationController?.setToolbarHidden(shouldHideTopBottomBars, animated: false)
         self.navigationController?.setNavigationBarHidden(shouldHideTopBottomBars, animated: false)
         statusBarHidden = shouldHideTopBottomBars
         self.setNeedsStatusBarAppearanceUpdate()
     }
 
+    func setUI(hasImage: Bool, image: UIImage? = nil) {
+        shareButton.isEnabled = hasImage
+        topTextField.isHidden = !hasImage
+        bottomTextField.isHidden = !hasImage
+
+        if let newImage = image {
+            imageView.image = newImage
+
+            positionTextFields(inView: imageView)
+        }
+    }
+
+    func positionTextFields(inView view: UIImageView) {
+//        let imageViewYCenter = view.center.y
+        let imageViewWidth = view.frame.width
+        if let imageHeight = view.image?.size.height, let imageWidth = view.image?.size.width {
+            let scaleFactor = imageViewWidth / imageWidth
+            let newImageHeight = imageHeight * scaleFactor
+
+            let imageTopToViewTop = view.frame.height/2 - newImageHeight/2
+            let imageBottomToViewBottom = view.frame.height/2 - newImageHeight/2
+
+            topTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: imageTopToViewTop).isActive = true
+            bottomTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                                    constant: -1 * imageBottomToViewBottom).isActive = true
+
+            topTextField.defaultTextAttributes = generateFontAttributes(withText: topTextField.text!,
+                                                                        maxWidth: imageViewWidth)
+            bottomTextField.defaultTextAttributes = generateFontAttributes(withText: bottomTextField.text!,
+                                                                           maxWidth: imageViewWidth)
+            topTextField.textAlignment = .center
+            bottomTextField.textAlignment = .center
+            print(newImageHeight)
+        }
+    }
+
+    func generateFontAttributes(withText text: String, maxWidth width: CGFloat) -> FontAttributes {
+        var newAttributes = defaultMemeFontAttributes
+        let maxFontSize = width / 10
+        let minFontSize = width / 50
+
+        var bestFontSize = maxFontSize
+        newAttributes[NSFontAttributeName] = (newAttributes[NSFontAttributeName] as! UIFont).withSize(bestFontSize)
+
+        while text.size(attributes: newAttributes).width > width && bestFontSize > minFontSize {
+            bestFontSize -= 10
+            newAttributes[NSFontAttributeName] = (newAttributes[NSFontAttributeName] as! UIFont).withSize(bestFontSize)
+        }
+        newAttributes[NSStrokeWidthAttributeName] = -1 * (bestFontSize / 50)
+        return newAttributes
+    }
+
     override var prefersStatusBarHidden: Bool {
         return statusBarHidden
     }
 
+    @IBAction func testStuff(_ sender: Any) {
+        let meme = Meme.init(withImage: imageView.image!, topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: imageView.image!)
+        imageView.image = meme.alternativeMemedImage
+    }
 }
