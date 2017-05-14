@@ -21,15 +21,17 @@ class Meme {
     var backgroundImage: UIImage
     var topText: String
     var bottomText: String
+    var memedImage: UIImage
 
-    init(withImage image: UIImage, topText top: String, andBottomText bottom: String) {
+    init(withImage image: UIImage, topText top: String, bottomText bottom: String, memedImage meme: UIImage) {
         backgroundImage = image
         topText = top
         bottomText = bottom
+        memedImage = meme
     }
 
 //    var memedImage: UIImage {
-//        return generateMemedImage()
+//        return alternateGenerateMemedImage()
 //    }
 
     func alternateGenerateMemedImage() -> UIImage {

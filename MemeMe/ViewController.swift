@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var cameraButton: UIBarButtonItem!
+    @IBOutlet var shareButton: UIBarButtonItem!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var topTextField: UITextField!
     @IBOutlet var bottomTextField: UITextField!
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        shareButton.isEnabled = false
         subscribe()
     }
 
@@ -112,15 +114,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func shareMeme() {
-        if let image = imageView.image,let top = topTextField.text, let bottom = bottomTextField.text {
-            let _ = Meme.init(withImage: image, topText: top, andBottomText: bottom) // TODO: save the meme
+        if let image = imageView.image, let top = topTextField.text, let bottom = bottomTextField.text {
+            let memedImage = generateMemedImage()
+            let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
 
-            let activityViewController = UIActivityViewController.init(activityItems: [generateMemedImage()], applicationActivities: nil)
             activityViewController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
                 // TODO: handle something here
                 print(activityType ?? "nothing")
                 print(completed)
+
+                self.saveMeme(image, top, bottom, memedImage);
             }
+
             present(activityViewController, animated: true)
         } else {
             print("not enough stuff")
@@ -141,6 +146,10 @@ class ViewController: UIViewController {
         setUI(shouldHideTopBottomBars: false)
 
         return memedImage
+    }
+
+    func saveMeme(_ image: UIImage, _ top: String, _ bottom: String, _ memedImage: UIImage) {
+        let _ = Meme.init(withImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
     }
 
     func setUI(shouldHideTopBottomBars: Bool = false) {
