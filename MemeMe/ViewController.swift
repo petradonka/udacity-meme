@@ -168,45 +168,40 @@ class ViewController: UIViewController {
     }
 
     func positionTextFields(inView view: UIImageView) {
-//        let imageViewYCenter = view.center.y
         let imageViewWidth = view.frame.width
-        if let imageHeight = view.image?.size.height, let imageWidth = view.image?.size.width {
+
+        if topTextFieldConstraint === nil {
+            topTextFieldConstraint = topTextField.topAnchor.constraint(equalTo: view.topAnchor)
+            if let topTextFieldConstraint = topTextFieldConstraint {
+                topTextFieldConstraint.identifier = "topTextFieldConstraint"
+                topTextFieldConstraint.isActive = true
+            }
+        }
+
+        if bottomTextFieldConstraint === nil {
+            bottomTextFieldConstraint = bottomTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            if let bottomTextFieldConstraint = bottomTextFieldConstraint {
+                bottomTextFieldConstraint.identifier = "bottomTextFieldConstraint"
+                bottomTextFieldConstraint.isActive = true
+            }
+        }
+
+        if let imageHeight = view.image?.size.height,
+            let imageWidth = view.image?.size.width,
+            let topTextFieldConstraint = topTextFieldConstraint,
+            let bottomTextFieldConstraint = bottomTextFieldConstraint {
             let scaleFactor = imageViewWidth / imageWidth
             let newImageHeight = imageHeight * scaleFactor
 
             let imageTopToViewTop = view.frame.height/2 - newImageHeight/2
             let imageBottomToViewBottom = view.frame.height/2 - newImageHeight/2
 
-            topTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: imageTopToViewTop).isActive = true
-            bottomTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                    constant: -1 * imageBottomToViewBottom).isActive = true
-
-            topTextField.defaultTextAttributes = generateFontAttributes(withText: topTextField.text!,
-                                                                        maxWidth: imageViewWidth)
-            bottomTextField.defaultTextAttributes = generateFontAttributes(withText: bottomTextField.text!,
-                                                                           maxWidth: imageViewWidth)
-            topTextField.textAlignment = .center
-            bottomTextField.textAlignment = .center
-            print(newImageHeight)
+            topTextFieldConstraint.constant = imageTopToViewTop;
+            bottomTextFieldConstraint.constant = -1 * imageBottomToViewBottom
+            view.updateConstraintsIfNeeded()
         }
     }
-
-    func generateFontAttributes(withText text: String, maxWidth width: CGFloat) -> FontAttributes {
-        var newAttributes = defaultMemeFontAttributes
-        let maxFontSize = width / 10
-        let minFontSize = width / 50
-
-        var bestFontSize = maxFontSize
-        newAttributes[NSFontAttributeName] = (newAttributes[NSFontAttributeName] as! UIFont).withSize(bestFontSize)
-
-        while text.size(attributes: newAttributes).width > width && bestFontSize > minFontSize {
-            bestFontSize -= 10
-            newAttributes[NSFontAttributeName] = (newAttributes[NSFontAttributeName] as! UIFont).withSize(bestFontSize)
-        }
-        newAttributes[NSStrokeWidthAttributeName] = -1 * (bestFontSize / 50)
-        return newAttributes
-    }
-
+    
     override var prefersStatusBarHidden: Bool {
         return statusBarHidden
     }
