@@ -20,6 +20,17 @@ class ViewController: UIViewController {
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
 
+    var topTextFieldConstraint: NSLayoutConstraint?
+    var bottomTextFieldConstraint: NSLayoutConstraint?
+
+    let defaultMemeTextAttributes: [String:Any] = [
+        NSStrokeColorAttributeName: UIColor.white,
+        NSStrokeWidthAttributeName: -6.0, // setting a negative value strokes AND fills the text
+        NSForegroundColorAttributeName: UIColor.black,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        ]
+
+
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribe()
     }
@@ -33,15 +44,8 @@ class ViewController: UIViewController {
     }
 
     func setupTextFields() {
-        let memeTextAttributes: [String:Any] = [
-            NSStrokeColorAttributeName: UIColor.white,
-            NSStrokeWidthAttributeName: -6.0, // setting a negative value strokes AND fills the text
-            NSForegroundColorAttributeName: UIColor.black,
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            ]
-
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.defaultTextAttributes = defaultMemeTextAttributes
+        bottomTextField.defaultTextAttributes = defaultMemeTextAttributes
         topTextField.textAlignment = .center
         bottomTextField.textAlignment = .center
         topTextField.text = defaultTopText
@@ -74,7 +78,6 @@ class ViewController: UIViewController {
     }
 
     func pushViewUpForKeyboard(withHeight height: CGFloat?) {
-        // calculate shift amount based on other values
         if let keyboardHeight = height {
             if topTextField.isFirstResponder {
                 if topTextField.frame.origin.y + topTextField.frame.height > view.frame.height - keyboardHeight {
@@ -84,12 +87,7 @@ class ViewController: UIViewController {
                 if bottomTextField.frame.origin.y + bottomTextField.frame.height > view.frame.height - keyboardHeight {
                     view.frame.origin.y = 0 - keyboardHeight
                 }
-            } else {
-                print("why is the keyboard showing up? 🤔")
             }
-        } else {
-            // TODO: handle error properly
-            print("there was no valid keyboard height, which is highly unlikely")
         }
     }
 
@@ -99,7 +97,7 @@ class ViewController: UIViewController {
         imagePicker.delegate = self
 
         present(imagePicker, animated: true, completion: nil)
-        
+
     }
 
     @IBAction func shootPhoto() {
@@ -146,7 +144,8 @@ class ViewController: UIViewController {
     }
 
     func saveMeme(_ image: UIImage, _ top: String, _ bottom: String, _ memedImage: UIImage) {
-        let _ = Meme.init(withImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
+        let meme = Meme.init(withImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
+        print(meme)
     }
 
     func setUIForCapturingMeme(shouldHideTopBottomBars: Bool = false) {
@@ -210,10 +209,5 @@ class ViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return statusBarHidden
-    }
-
-    @IBAction func testStuff(_ sender: Any) {
-        let meme = Meme.init(withImage: imageView.image!, topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: imageView.image!)
-        imageView.image = meme.alternativeMemedImage
     }
 }

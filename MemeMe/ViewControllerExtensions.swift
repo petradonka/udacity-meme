@@ -12,7 +12,8 @@ import UIKit
 extension ViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let text = textField.text, text == defaultTopText || text == defaultBottomText {
-            if (textField === topTextField && text == defaultTopText) || (textField === bottomTextField && text == defaultBottomText) {
+            if (textField === topTextField && text == defaultTopText)
+                || (textField === bottomTextField && text == defaultBottomText) {
                 textField.text = ""
             }
         }

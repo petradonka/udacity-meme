@@ -80,11 +80,6 @@
                                 <action selector="shareMeme" destination="BYZ-38-t0r" id="EtL-si-e7I"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="UrG-z7-MAt" userLabel="Share Button">
-                            <connections>
-                                <action selector="testStuff:" destination="BYZ-38-t0r" id="9VJ-ea-c5t"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomTextField" destination="9EK-Mw-u8M" id="xcg-LJ-eFA"/>
