@@ -62,6 +62,13 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        for touch in touches where type(of: touch.view) != UITextField.self {
+            touch.view?.endEditing(true)
+        }
+    }
+
     func keyboardWillShow(_ notification: Notification) {
         let keyboardHeight = getKeyboardHeightForNotification(notification)
         pushViewUpForKeyboard(withHeight: keyboardHeight)
@@ -111,15 +118,9 @@ class ViewController: UIViewController {
     @IBAction func shareMeme() {
         if let image = imageView.image, let top = topTextField.text, let bottom = bottomTextField.text {
             let memedImage = generateMemedImage()
+
             let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
-
-            activityViewController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
-                // TODO: handle something here
-                print(activityType ?? "nothing")
-                print(completed)
-
-                self.saveMeme(image, top, bottom, memedImage);
-            }
+            activityViewController.completionWithItemsHandler = { _ in self.saveMeme(image, top, bottom, memedImage)}
 
             present(activityViewController, animated: true)
         } else {
