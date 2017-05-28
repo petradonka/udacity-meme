@@ -27,9 +27,12 @@ class ViewController: UIViewController {
         NSStrokeColorAttributeName: UIColor.white,
         NSStrokeWidthAttributeName: -6.0, // setting a negative value strokes AND fills the text
         NSForegroundColorAttributeName: UIColor.black,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
         ]
 
+    override func viewWillAppear(_ animated: Bool) {
+        subscribe()
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribe()
@@ -40,7 +43,6 @@ class ViewController: UIViewController {
         setupTextFields()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setUI(hasImage: false)
-        subscribe()
     }
 
     func setupTextFields() {
@@ -91,6 +93,8 @@ class ViewController: UIViewController {
                     view.frame.origin.y = 0 - keyboardHeight
                 }
             } else if bottomTextField.isFirstResponder {
+                // TODO: push only if really needed! right now it still pushes too high
+                // idea: create function to calculate the needed push to isolate that part, maybe extract it into an extension to be reused later and to separate it even more
                 if bottomTextField.frame.origin.y + bottomTextField.frame.height > view.frame.height - keyboardHeight {
                     view.frame.origin.y = 0 - keyboardHeight
                 }

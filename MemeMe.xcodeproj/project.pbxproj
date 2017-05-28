@@ -14,6 +14,7 @@
 		6F5CBB391EB74A0C002816A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F5CBB381EB74A0C002816A2 /* Assets.xcassets */; };
 		6F5CBB3C1EB74A0C002816A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5CBB3A1EB74A0C002816A2 /* LaunchScreen.storyboard */; };
 		6FD5037B1EC4CBFE009FB122 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD5037A1EC4CBFE009FB122 /* ViewControllerExtensions.swift */; };
+		6FF164671EDB262E0064CCD6 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FF164661EDB262E0064CCD6 /* Impact.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6F5CBB3B1EB74A0C002816A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F5CBB3D1EB74A0C002816A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FD5037A1EC4CBFE009FB122 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		6FF164661EDB262E0064CCD6 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				6F5CBB381EB74A0C002816A2 /* Assets.xcassets */,
 				6F5CBB3A1EB74A0C002816A2 /* LaunchScreen.storyboard */,
 				6F5CBB3D1EB74A0C002816A2 /* Info.plist */,
+				6FF164661EDB262E0064CCD6 /* Impact.ttf */,
 				6F0380C01EB7BC83009AEB9F /* Meme.swift */,
 				6FD5037A1EC4CBFE009FB122 /* ViewControllerExtensions.swift */,
 			);
@@ -130,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FF164671EDB262E0064CCD6 /* Impact.ttf in Resources */,
 				6F5CBB3C1EB74A0C002816A2 /* LaunchScreen.storyboard in Resources */,
 				6F5CBB391EB74A0C002816A2 /* Assets.xcassets in Resources */,
 				6F5CBB371EB74A0C002816A2 /* Main.storyboard in Resources */,
