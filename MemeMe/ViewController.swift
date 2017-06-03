@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
         ]
 
+    // MARK: - Lifecycle
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribe()
@@ -44,6 +46,12 @@ class ViewController: UIViewController {
         setupTextFields()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         setUI(hasImage: false)
+    }
+
+    // MARK: - Initializations & related handlers
+
+    override var prefersStatusBarHidden: Bool {
+        return statusBarHidden
     }
 
     func setupTextFields() {
@@ -65,6 +73,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
+    // Dismiss keyboard if tapped outside of a text field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         for touch in touches where type(of: touch.view) != UITextField.self {
@@ -87,6 +96,7 @@ class ViewController: UIViewController {
         return keyboardSize?.cgRectValue.height
     }
 
+    // Helper method for pushing up the keyboard
     func pushViewUpForKeyboard(withHeight height: CGFloat?) {
         if let keyboardHeight = height {
             if topTextField.isFirstResponder {
@@ -102,6 +112,8 @@ class ViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - IBActions
 
     @IBAction func choosePhoto() {
         let imagePicker = UIImagePickerController()
@@ -133,6 +145,8 @@ class ViewController: UIViewController {
         }
     }
 
+    // MARK: - Meme helpers
+
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navbar
         setUIForCapturingMeme(shouldHideTopBottomBars: true)
@@ -154,6 +168,8 @@ class ViewController: UIViewController {
         print(meme)
     }
 
+    // MARK: - UI helpers
+
     func setUIForCapturingMeme(shouldHideTopBottomBars: Bool = false) {
         self.navigationController?.setToolbarHidden(shouldHideTopBottomBars, animated: false)
         self.navigationController?.setNavigationBarHidden(shouldHideTopBottomBars, animated: false)
@@ -206,9 +222,5 @@ class ViewController: UIViewController {
             bottomTextFieldConstraint.constant = -1 * imageBottomToViewBottom
             view.updateConstraintsIfNeeded()
         }
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return statusBarHidden
     }
 }
