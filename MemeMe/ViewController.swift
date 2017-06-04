@@ -169,7 +169,7 @@ class ViewController: UIViewController {
     }
 
     // MARK: - UI helpers
-
+
     func setUIForCapturingMeme(shouldHideTopBottomBars: Bool = false) {
         self.navigationController?.setToolbarHidden(shouldHideTopBottomBars, animated: false)
         self.navigationController?.setNavigationBarHidden(shouldHideTopBottomBars, animated: false)
