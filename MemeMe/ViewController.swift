@@ -180,5 +180,9 @@ class ViewController: UIViewController {
         shareButton.isEnabled = hasImage
         topTextField.isHidden = !hasImage
         bottomTextField.isHidden = !hasImage
+
+        if let newImage = image {
+            imageView.image = newImage
+        }
     }
 }
