@@ -136,7 +136,10 @@ class ViewController: UIViewController {
             let memedImage = generateMemedImage()
 
             let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
-            activityViewController.completionWithItemsHandler = { _ in self.saveMeme(image, top, bottom, memedImage)}
+            activityViewController.completionWithItemsHandler = { _ in
+                self.saveMeme(image, top, bottom, memedImage)
+                self.setUI(hasImage: false)
+            }
 
             present(activityViewController, animated: true)
         } else {
@@ -180,9 +183,6 @@ class ViewController: UIViewController {
         shareButton.isEnabled = hasImage
         topTextField.isHidden = !hasImage
         bottomTextField.isHidden = !hasImage
-
-        if let newImage = image {
-            imageView.image = newImage
-        }
+        imageView.image = image
     }
 }
