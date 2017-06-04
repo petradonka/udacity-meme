@@ -28,11 +28,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ePI-eH-bbm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="g3Z-o8-HSK">
-                                <rect key="frame" x="16" y="209.5" width="343" height="49"/>
+                                <rect key="frame" x="16" y="239" width="343" height="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9EK-Mw-u8M">
-                                <rect key="frame" x="16" y="389" width="343" height="49"/>
+                                <rect key="frame" x="16" y="399" width="343" height="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
@@ -54,16 +54,14 @@
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="9EK-Mw-u8M" secondAttribute="leading" id="2c6-ms-VEi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g3Z-o8-HSK" secondAttribute="trailing" id="2ik-08-VgI"/>
-                            <constraint firstItem="g3Z-o8-HSK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="250" constant="20" id="4cc-Qt-KpL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9EK-Mw-u8M" secondAttribute="bottom" priority="250" constant="65" id="C6j-Ts-Pg8"/>
-                            <constraint firstItem="9EK-Mw-u8M" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="750" constant="80" id="FEr-xf-e3N"/>
+                            <constraint firstItem="ePI-eH-bbm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="HAS-vs-Dpd"/>
                             <constraint firstItem="g3Z-o8-HSK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="RJX-Gy-n4N"/>
                             <constraint firstItem="ePI-eH-bbm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="RqW-K7-k2D"/>
-                            <constraint firstItem="g3Z-o8-HSK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="750" constant="-100" id="V1G-az-ykz"/>
+                            <constraint firstItem="9EK-Mw-u8M" firstAttribute="centerY" secondItem="ePI-eH-bbm" secondAttribute="centerY" constant="80" id="Z2Z-6h-oxd"/>
                             <constraint firstItem="ePI-eH-bbm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c2B-sM-Kh5"/>
-                            <constraint firstItem="ePI-eH-bbm" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="fZd-36-guw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ePI-eH-bbm" secondAttribute="bottom" id="gky-J2-TRQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9EK-Mw-u8M" secondAttribute="trailing" id="hsj-CB-3wt"/>
-                            <constraint firstItem="ePI-eH-bbm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jD5-K7-3Xf"/>
+                            <constraint firstItem="g3Z-o8-HSK" firstAttribute="centerY" secondItem="ePI-eH-bbm" secondAttribute="centerY" constant="-80" id="zg0-qT-BGe"/>
                         </constraints>
                     </view>
                     <toolbarItems>
