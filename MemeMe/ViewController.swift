@@ -99,15 +99,14 @@ class ViewController: UIViewController {
     // Helper method for pushing up the keyboard
     func pushViewUpForKeyboard(withHeight height: CGFloat?) {
         if let keyboardHeight = height {
+            let keyboardMinY = view.frame.height - keyboardHeight
             if topTextField.isFirstResponder {
-                if topTextField.frame.origin.y + topTextField.frame.height > view.frame.height - keyboardHeight {
-                    view.frame.origin.y = 0 - keyboardHeight
+                if topTextField.frame.maxY > keyboardMinY {
+                    view.frame.origin.y = keyboardMinY - topTextField.frame.maxY - 20
                 }
             } else if bottomTextField.isFirstResponder {
-                // TODO: push only if really needed! right now it still pushes too high
-                // idea: create function to calculate the needed push to isolate that part, maybe extract it into an extension to be reused later and to separate it even more
-                if bottomTextField.frame.origin.y + bottomTextField.frame.height > view.frame.height - keyboardHeight {
-                    view.frame.origin.y = 0 - keyboardHeight
+                if bottomTextField.frame.maxY > keyboardMinY {
+                    view.frame.origin.y = keyboardMinY - bottomTextField.frame.maxY - 20
                 }
             }
         }
@@ -181,46 +180,5 @@ class ViewController: UIViewController {
         shareButton.isEnabled = hasImage
         topTextField.isHidden = !hasImage
         bottomTextField.isHidden = !hasImage
-
-        if let newImage = image {
-            imageView.image = newImage
-
-            positionTextFields(inView: imageView)
-        }
-    }
-
-    func positionTextFields(inView view: UIImageView) {
-        let imageViewWidth = view.frame.width
-
-        if topTextFieldConstraint === nil {
-            topTextFieldConstraint = topTextField.topAnchor.constraint(equalTo: view.topAnchor)
-            if let topTextFieldConstraint = topTextFieldConstraint {
-                topTextFieldConstraint.identifier = "topTextFieldConstraint"
-                topTextFieldConstraint.isActive = true
-            }
-        }
-
-        if bottomTextFieldConstraint === nil {
-            bottomTextFieldConstraint = bottomTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            if let bottomTextFieldConstraint = bottomTextFieldConstraint {
-                bottomTextFieldConstraint.identifier = "bottomTextFieldConstraint"
-                bottomTextFieldConstraint.isActive = true
-            }
-        }
-
-        if let imageHeight = view.image?.size.height,
-            let imageWidth = view.image?.size.width,
-            let topTextFieldConstraint = topTextFieldConstraint,
-            let bottomTextFieldConstraint = bottomTextFieldConstraint {
-            let scaleFactor = imageViewWidth / imageWidth
-            let newImageHeight = imageHeight * scaleFactor
-
-            let imageTopToViewTop = view.frame.height/2 - newImageHeight/2
-            let imageBottomToViewBottom = view.frame.height/2 - newImageHeight/2
-
-            topTextFieldConstraint.constant = imageTopToViewTop;
-            bottomTextFieldConstraint.constant = -1 * imageBottomToViewBottom
-            view.updateConstraintsIfNeeded()
-        }
     }
 }
