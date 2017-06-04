@@ -139,6 +139,7 @@ class ViewController: UIViewController {
             activityViewController.completionWithItemsHandler = { _ in
                 self.saveMeme(image, top, bottom, memedImage)
                 self.setUI(hasImage: false)
+                self.setupTextFields()
             }
 
             present(activityViewController, animated: true)
