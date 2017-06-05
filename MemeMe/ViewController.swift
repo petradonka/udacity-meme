@@ -163,7 +163,7 @@ class ViewController: UIViewController {
     }
 
     func saveMeme(_ image: UIImage, _ top: String, _ bottom: String, _ memedImage: UIImage) {
-        let meme = Meme.init(withImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
+        let meme = Meme.init(backgroundImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
         print(meme)
     }
 
