@@ -24,9 +24,9 @@ class ViewController: UIViewController {
     var bottomTextFieldConstraint: NSLayoutConstraint?
 
     let defaultMemeTextAttributes: [String:Any] = [
-        NSStrokeColorAttributeName: UIColor.white,
-        NSStrokeWidthAttributeName: -6.0, // setting a negative value strokes AND fills the text
-        NSForegroundColorAttributeName: UIColor.black,
+        NSStrokeColorAttributeName: UIColor.black,
+        NSStrokeWidthAttributeName: -3.6, // setting a negative value strokes AND fills the text
+        NSForegroundColorAttributeName: UIColor.white,
         NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
         ]
 
