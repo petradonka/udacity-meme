@@ -115,20 +115,12 @@ class ViewController: UIViewController {
     // MARK: - IBActions
 
     @IBAction func choosePhoto() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-
-        present(imagePicker, animated: true, completion: nil)
+        pickPhoto(from: .photoLibrary)
 
     }
 
     @IBAction func shootPhoto() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
-        imagePicker.delegate = self
-
-        present(imagePicker, animated: true, completion: nil)
+        pickPhoto(from: .camera)
     }
 
     @IBAction func shareMeme() {
@@ -149,6 +141,14 @@ class ViewController: UIViewController {
     }
 
     // MARK: - Meme helpers
+
+    func pickPhoto(from sourceType: UIImagePickerControllerSourceType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = sourceType
+        picker.delegate = self
+
+        present(picker, animated: true, completion: nil)
+    }
 
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navbar
