@@ -124,10 +124,12 @@ class MemeEditorViewController: UIViewController {
             let memedImage = generateMemedImage()
 
             let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
-            activityViewController.completionWithItemsHandler = { _ in
-                self.saveMeme(image, top, bottom, memedImage)
-                self.setUI(hasImage: false)
-                self.setupTextFields()
+            activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
+                if completed {
+                    self.saveMeme(image, top, bottom, memedImage)
+                    self.setUI(hasImage: false)
+                    self.setupTextFields()
+                }
             }
 
             present(activityViewController, animated: true)
