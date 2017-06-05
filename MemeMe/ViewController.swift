@@ -55,12 +55,8 @@ class ViewController: UIViewController {
     }
 
     func setupTextFields() {
-        topTextField.defaultTextAttributes = defaultMemeTextAttributes
-        bottomTextField.defaultTextAttributes = defaultMemeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        topTextField.text = defaultTopText
-        bottomTextField.text = defaultBottomText
+        setupTextField(topTextField, withDefaultText: defaultTopText)
+        setupTextField(bottomTextField, withDefaultText: defaultBottomText)
     }
 
     func subscribe() {
@@ -172,6 +168,12 @@ class ViewController: UIViewController {
     }
 
     // MARK: - UI helpers
+
+    func setupTextField(_ textField: UITextField, withDefaultText text: String) {
+        textField.defaultTextAttributes = defaultMemeTextAttributes
+        textField.textAlignment = .center
+        textField.text = text
+    }
 
     func setUIForCapturingMeme(shouldHideTopBottomBars: Bool = false) {
         self.navigationController?.setToolbarHidden(shouldHideTopBottomBars, animated: false)
