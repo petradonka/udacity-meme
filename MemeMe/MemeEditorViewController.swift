@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MemeEditorViewController: UIViewController {
 
     @IBOutlet var cameraButton: UIBarButtonItem!
     @IBOutlet var shareButton: UIBarButtonItem!

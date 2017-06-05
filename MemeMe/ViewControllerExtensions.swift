@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension ViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let text = textField.text, text == defaultTopText || text == defaultBottomText {
             if (textField === topTextField && text == defaultTopText)
@@ -26,7 +26,7 @@ extension ViewController: UITextFieldDelegate {
     
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
