@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: - UITextFieldDelegate
+
 extension MemeEditorViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let text = textField.text, text == defaultTopText || text == defaultBottomText {
@@ -25,6 +27,8 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
 }
+
+// MARK: - UIImagePickerControllerDelegate
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
