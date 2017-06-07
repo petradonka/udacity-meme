@@ -138,7 +138,7 @@ class MemeEditorViewController: UIViewController {
         }
     }
 
-    @IBAction func dismiss() {
+    @IBAction func dismissMemeEditor() {
         dismiss(animated: true, completion: nil)
     }
 
@@ -169,8 +169,11 @@ class MemeEditorViewController: UIViewController {
     }
 
     func saveMeme(_ image: UIImage, _ top: String, _ bottom: String, _ memedImage: UIImage) {
-        let meme = Meme.init(backgroundImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
-        print(meme)
+        let newMeme = Meme.init(backgroundImage: image, topText: top, bottomText: bottom, memedImage: memedImage)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.memes.append(newMeme)
+        }
+        dismissMemeEditor()
     }
 
     // MARK: - UI helpers
