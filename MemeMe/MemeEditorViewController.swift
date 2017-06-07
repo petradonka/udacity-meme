@@ -138,6 +138,10 @@ class MemeEditorViewController: UIViewController {
         }
     }
 
+    @IBAction func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+
     // MARK: - Meme helpers
 
     func pickPhoto(from sourceType: UIImagePickerControllerSourceType) {
