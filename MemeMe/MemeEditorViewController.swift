@@ -43,8 +43,8 @@ class MemeEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTextFields()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        setupDefaultTextFields()
         setUI(hasImage: false)
     }
 
@@ -54,7 +54,7 @@ class MemeEditorViewController: UIViewController {
         return statusBarHidden
     }
 
-    func setupTextFields() {
+    func setupDefaultTextFields() {
         setupTextField(topTextField, withDefaultText: defaultTopText)
         setupTextField(bottomTextField, withDefaultText: defaultBottomText)
     }
@@ -122,20 +122,18 @@ class MemeEditorViewController: UIViewController {
     @IBAction func shareMeme() {
         if let image = imageView.image, let top = topTextField.text, let bottom = bottomTextField.text {
             let memedImage = generateMemedImage()
-
+            
             let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
             activityViewController.popoverPresentationController?.barButtonItem = shareButton
             activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
                 if completed {
                     self.saveMeme(image, top, bottom, memedImage)
                     self.setUI(hasImage: false)
-                    self.setupTextFields()
+                    self.setupDefaultTextFields()
                 }
             }
-
+            
             present(activityViewController, animated: true)
-        } else {
-            print("not enough stuff")
         }
     }
 
