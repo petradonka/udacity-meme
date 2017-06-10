@@ -29,11 +29,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ePI-eH-bbm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="555"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="g3Z-o8-HSK">
-                                <rect key="frame" x="16" y="239" width="343" height="49"/>
+                                <rect key="frame" x="16" y="241" width="343" height="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
@@ -42,7 +42,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9EK-Mw-u8M">
-                                <rect key="frame" x="16" y="399" width="343" height="49"/>
+                                <rect key="frame" x="16" y="401" width="343" height="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3314" y="1374"/>
+            <point key="canvasLocation" x="3372" y="1702"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KVG-fe-mjT">
@@ -282,6 +282,38 @@
             </objects>
             <point key="canvasLocation" x="192" y="1704"/>
         </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="elC-7V-voe">
+            <objects>
+                <viewController storyboardIdentifier="memeDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cs6-91-WIQ" customClass="MemeDetailViewController" customModule="MemeMe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wHF-62-uYS"/>
+                        <viewControllerLayoutGuide type="bottom" id="dTf-cv-ei8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v0j-pi-uXW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DeE-4y-n4r">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DeE-4y-n4r" firstAttribute="width" secondItem="v0j-pi-uXW" secondAttribute="width" id="0Eb-SL-GNb"/>
+                            <constraint firstItem="DeE-4y-n4r" firstAttribute="centerY" secondItem="v0j-pi-uXW" secondAttribute="centerY" id="p6n-3f-Bk8"/>
+                            <constraint firstItem="DeE-4y-n4r" firstAttribute="centerX" secondItem="v0j-pi-uXW" secondAttribute="centerX" id="tJM-WG-FHU"/>
+                            <constraint firstItem="DeE-4y-n4r" firstAttribute="height" secondItem="v0j-pi-uXW" secondAttribute="height" id="zZN-lP-Kyo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="DeE-4y-n4r" id="35I-97-Vfh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbh-Z6-zv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2423" y="957"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ROx-CJ-O42">
             <objects>
@@ -302,7 +334,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9aZ-WX-uiN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2409.5999999999999" y="1374.5127436281859"/>
+            <point key="canvasLocation" x="2468" y="1703"/>
         </scene>
     </scenes>
     <resources>
