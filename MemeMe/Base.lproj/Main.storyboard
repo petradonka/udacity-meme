@@ -138,28 +138,42 @@
             </objects>
             <point key="canvasLocation" x="147" y="953"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Meme Collection View Controller-->
         <scene sceneID="Qho-E5-I2o">
             <objects>
-                <collectionViewController id="iKu-uA-bmP" sceneMemberID="viewController">
+                <collectionViewController id="iKu-uA-bmP" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="1ef-2b-fZQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DR8-sZ-La6">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="138" height="138"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fJN-HU-doL">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memeCollectionViewCell" id="fJN-HU-doL" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6S-BU-OOM">
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="t6S-BU-OOM" firstAttribute="leading" secondItem="fJN-HU-doL" secondAttribute="leading" id="FtU-Mg-lak"/>
+                                    <constraint firstAttribute="bottom" secondItem="t6S-BU-OOM" secondAttribute="bottom" id="GZL-NA-WH1"/>
+                                    <constraint firstAttribute="trailing" secondItem="t6S-BU-OOM" secondAttribute="trailing" id="lKD-Kg-lWZ"/>
+                                    <constraint firstItem="t6S-BU-OOM" firstAttribute="top" secondItem="fJN-HU-doL" secondAttribute="top" id="nof-O1-wmP"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="memeImageView" destination="t6S-BU-OOM" id="aRp-02-kLp"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -170,14 +184,17 @@
                     <navigationItem key="navigationItem" id="XDt-n1-4dS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tkh-9i-2kg">
                             <connections>
-                                <segue destination="V1C-6N-acx" kind="presentation" id="W2Z-AQ-nOb"/>
+                                <segue destination="V1C-6N-acx" kind="presentation" modalPresentationStyle="fullScreen" id="W2Z-AQ-nOb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="flowLayout" destination="DR8-sZ-La6" id="HVr-vM-kmy"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0Z-1u-xtx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="957"/>
+            <point key="canvasLocation" x="1144.8" y="956.67166416791611"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="Hez-6E-IHf">
@@ -239,7 +256,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="LUz-uO-u4o">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tQy-un-WuU">
                             <connections>
-                                <segue destination="V1C-6N-acx" kind="presentation" id="2Yl-9O-XTi"/>
+                                <segue destination="V1C-6N-acx" kind="presentation" modalPresentationStyle="fullScreen" id="2Yl-9O-XTi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
