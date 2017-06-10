@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let reuseIdentifier = "memeTableViewCell"
+
 class MemeTableViewCell: UITableViewCell {
     @IBOutlet var topLabel: UILabel!
     @IBOutlet var bottomLabel: UILabel!
@@ -37,7 +39,7 @@ class MemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "memeTableViewCell", for: indexPath) as! MemeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MemeTableViewCell
         let meme = memes[indexPath.row]
 
         cell.memeImageView?.image = meme.memedImage
