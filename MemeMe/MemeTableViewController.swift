@@ -18,21 +18,35 @@ class MemeTableViewCell: UITableViewCell {
 
 class MemeTableViewController: UITableViewController {
 
-    var memes: [Meme] = [Meme]()
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadMemes()
-    }
-
-    func loadMemes() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            memes = appDelegate.memes
-            tableView.reloadData()
+    var memes: [Meme] {
+        get {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                return appDelegate.memes
+            } else {
+                return [Meme]()
+            }
         }
     }
 
-    // MARK: - Table view data source
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+
+    // MARK: - Meme Operations
+
+    func removeMeme(at indexPath: IndexPath) {
+        tableView.beginUpdates()
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.memes.remove(at: indexPath.row)
+        }
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+
+        tableView.endUpdates()
+    }
+
+    // MARK: - UITableViewDelegate, UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -56,6 +70,12 @@ class MemeTableViewController: UITableViewController {
             detailController.meme = meme
 
             navigationController?.pushViewController(detailController, animated: true)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            removeMeme(at: indexPath)
         }
     }
 }
