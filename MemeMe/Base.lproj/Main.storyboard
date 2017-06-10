@@ -138,7 +138,7 @@
             </objects>
             <point key="canvasLocation" x="147" y="953"/>
         </scene>
-        <!--Meme Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="Qho-E5-I2o">
             <objects>
                 <collectionViewController id="iKu-uA-bmP" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -181,7 +181,7 @@
                             <outlet property="delegate" destination="iKu-uA-bmP" id="nA7-qU-Hwm"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="XDt-n1-4dS">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="XDt-n1-4dS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tkh-9i-2kg">
                             <connections>
                                 <segue destination="V1C-6N-acx" kind="presentation" modalPresentationStyle="fullScreen" id="W2Z-AQ-nOb"/>
@@ -310,6 +310,6 @@
         <image name="TableIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Yl-9O-XTi"/>
+        <segue reference="W2Z-AQ-nOb"/>
     </inferredMetricsTieBreakers>
 </document>
