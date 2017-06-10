@@ -124,6 +124,7 @@ class MemeEditorViewController: UIViewController {
             let memedImage = generateMemedImage()
 
             let activityViewController = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.barButtonItem = shareButton
             activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
                 if completed {
                     self.saveMeme(image, top, bottom, memedImage)
