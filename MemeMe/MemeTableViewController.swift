@@ -16,34 +16,11 @@ class MemeTableViewCell: UITableViewCell {
     @IBOutlet var memeImageView: UIImageView!
 }
 
-class MemeTableViewController: UITableViewController {
-
-    var memes: [Meme] {
-        get {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                return appDelegate.memes
-            } else {
-                return [Meme]()
-            }
-        }
-    }
+class MemeTableViewController: UITableViewController, MemeController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-    }
-
-    // MARK: - Meme Operations
-
-    func removeMeme(at indexPath: IndexPath) {
-        tableView.beginUpdates()
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.memes.remove(at: indexPath.row)
-        }
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-
-        tableView.endUpdates()
     }
 
     // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -56,26 +33,45 @@ class MemeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MemeTableViewCell
         let meme = memes[indexPath.row]
 
-        cell.memeImageView?.image = meme.memedImage
-        cell.topLabel?.text = meme.topText
-        cell.bottomLabel?.text = meme.bottomText
-
-        return cell
+        return setupCell(cell, withMeme: meme)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
 
-        if let detailController = storyboard?.instantiateViewController(withIdentifier: "memeDetailViewController") as? MemeDetailViewController {
-            detailController.meme = meme
-
-            navigationController?.pushViewController(detailController, animated: true)
-        }
+        showMeme(meme)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            removeMeme(at: indexPath)
+            removeMeme(at: indexPath.row)
+            deleteMemeRow(at: indexPath)
+        }
+    }
+
+    func setupCell(_ cell: UITableViewCell, withMeme meme: Meme) -> UITableViewCell {
+        if let cell = cell as? MemeTableViewCell {
+            cell.memeImageView?.image = meme.memedImage
+            cell.topLabel?.text = meme.topText
+            cell.bottomLabel?.text = meme.bottomText
+        }
+
+        return cell
+    }
+
+    // Delete a row from the table
+    func deleteMemeRow(at indexPath: IndexPath) {
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+
+    // MARK: - MemeController
+
+    func showMeme(_ meme: Meme) {
+        if let detailController = storyboard?.instantiateViewController(withIdentifier: "memeDetailViewController") as? MemeDetailViewController {
+            detailController.meme = meme
+            navigationController?.pushViewController(detailController, animated: true)
         }
     }
 }

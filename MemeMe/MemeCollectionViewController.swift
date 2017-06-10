@@ -14,24 +14,13 @@ class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet var memeImageView: UIImageView!
 }
 
-class MemeCollectionViewController: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController, MemeController {
 
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-
-    var memes: [Meme] {
-        get {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                return appDelegate.memes
-            } else {
-                return [Meme]()
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         clearsSelectionOnViewWillAppear = false
-//        self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +67,7 @@ class MemeCollectionViewController: UICollectionViewController {
         return CGSize(width: itemDimension, height: itemDimension)
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
@@ -96,9 +85,14 @@ class MemeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
 
+        showMeme(meme)
+    }
+
+    // MARK: - MemeController
+
+    func showMeme(_ meme: Meme) {
         if let detailController = storyboard?.instantiateViewController(withIdentifier: "memeDetailViewController") as? MemeDetailViewController {
             detailController.meme = meme
-
             navigationController?.pushViewController(detailController, animated: true)
         }
     }
